@@ -1,28 +1,26 @@
 const fireTabs = function() {
 	const tabTrigger = document.querySelectorAll('.js-trigger');
 	const tabParent = document.querySelectorAll('.js-tab');
-	console.log(tabTrigger, tabParent);
-	for(tt in tabTrigger) {
-		let el = tabTrigger[tt];
-		let tabEl = tabTrigger[tt].parentElement;
 
-		//console.log(el, tabEl);
+	for(tt of tabTrigger) {
+		let el = tt;
+		let tabEl = el.parentNode;
 
-		el.addEventListener('click', (tabEl) => {
-			el.onClick(tabEl);
-		});
+		console.log(tabEl);
+
+		el.addEventListener('click', onClick(tabEl,tabParent), false);
 	}
 }
 
 const removeActive = (tabParent) => {
-	for(tp in tabParent) {
-		if (tabParent[tp].classList.contains('isActive')) {
-			tabParent[tp].classList.remove('isActive');
+	for(tp of tabParent) {
+		if (tp.classList.contains('isActive')) {
+			tp.classList.remove('isActive');
 		}
 	}
 }
 
-const onClick = (tabEl) => {
+const onClick = (tabEl,tabParent) => {
 	removeActive(tabParent);
 	tabEl.classList.add('isActive');
 }
