@@ -1,29 +1,31 @@
-const fireTabs = function() {
-	const tabTrigger = document.querySelectorAll('.js-trigger');
-	const tabParent = document.querySelectorAll('.js-tab');
-
-	for(tt of tabTrigger) {
-		let el = tt;
-		let tabEl = el.parentNode;
-
-		console.log(tabEl);
-
-		el.addEventListener('click', onClick(tabEl,tabParent), false);
+class tabs {
+	constructor(trigger, triggerParent, tt, tp) {
+		this.trigger = document.querySelectorAll(trigger);
+		this.triggerParent = document.querySelectorAll(triggerParent);
+		this.tt = tt;
+		this.tp = tp;
 	}
-}
 
-const removeActive = (tabParent) => {
-	for(tp of tabParent) {
-		if (tp.classList.contains('isActive')) {
-			tp.classList.remove('isActive');
+	fireTabs(trigger, triggerParent, tt, tp) {
+		this.removeActive(this.triggerParent,this.tp);
+		for(tt of this.trigger) {
+			let tabEl = tt.parentNode;
+			tt.addEventListener('click', this.onClick(tabEl), true);
 		}
 	}
+
+	removeActive(triggerParent,tp) {
+		for(tp of triggerParent) {
+			if (tp.classList.contains('isActive')) {
+				tp.classList.remove('isActive');
+			}
+		}
+	}
+
+	onClick(tabEl) {
+		tabEl.classList.add('isActive');
+	}
 }
 
-const onClick = (tabEl,tabParent) => {
-	removeActive(tabParent);
-	tabEl.classList.add('isActive');
-}
-
-
-window.onload = fireTabs();
+let ft = new tabs('.js-trigger','.js-tab',0,0);
+ft.fireTabs();
