@@ -7,22 +7,22 @@ class tabs {
 	}
 
 	fireTabs(trigger, triggerParent, tt, tp) {
-		this.removeActive(this.triggerParent,this.tp);
+		//this.removeActive;
 		for(tt of this.trigger) {
-			let tabEl = tt.parentNode;
-			tt.addEventListener('click', this.onClick(tabEl), true);
+			tt.addEventListener('click', this.onClick, false);
 		}
 	}
 
-	removeActive(triggerParent,tp) {
-		for(tp of triggerParent) {
+	removeActive() {
+		for(this.tp of this.triggerParent) {
 			if (tp.classList.contains('isActive')) {
 				tp.classList.remove('isActive');
 			}
 		}
 	}
 
-	onClick(tabEl) {
+	onClick() {
+		const tabEl = this.parentNode;
 		tabEl.classList.add('isActive');
 	}
 }
