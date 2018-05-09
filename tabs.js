@@ -1,30 +1,26 @@
 class tabs {
-	constructor(trigger/*, triggerParent*/) {
+	constructor(trigger) {
 		this.trigger = document.querySelectorAll(trigger);
-		//this.triggerParent = document.querySelectorAll(triggerParent);
 	}
 
 	fireTabs() {
+		const go = this.onclick
 		for(let tt of this.trigger) {
-			tt.addEventListener('click', this.onClick, false);
+			tt.addEventListener('click', go, false);
 		}
 	}
 
-	onClick() {
+	onclick() {
 		const tabEl = this.parentNode;
-		const sibEls = tabEl.siblings;
-		this.removeActive(sibEls);
-		tabEl.classList.add('isActive');
-	}
-
-	removeActive(sibEls) {
-		for(let tp of sibEls) {
+		const triggerParent = document.querySelectorAll('.'+this.parentNode.classList[1]);
+		for(let tp of triggerParent) {
 			if (tp.classList.contains('isActive')) {
 				tp.classList.remove('isActive');
 			}
 		}
+		tabEl.classList.add('isActive');
 	}
 }
 
-let ft = new tabs('.js-trigger'/*,'.js-tab'*/);
+let ft = new tabs('.js-trigger');
 ft.fireTabs();

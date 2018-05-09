@@ -18,7 +18,6 @@ body {
 }
 
 .tab-container__body__content__details {
-    padding: 0 10px 10px;
     display: none;
 }
 
@@ -37,12 +36,28 @@ body {
 button.tab-container__body__content__header:focus {outline:0;}
 
 @media screen and (min-width: 768px) {
+	.tab-container {
+		max-width: 768px;
+		position: relative;
+	}
 	.tab-container__body__content.isActive .tab-container__body__content__header {
 		border-top: 4px solid #07a7a7;
+		background: #f1f1f1;
 	}
 	.tab-container__body__content__header {
+		border-top: 4px solid transparent;
 		display: inline-block;
+		position: absolute;
+		top: 0;
 	}	
+	.tab-container__body__content__details {
+		padding: 10px;
+		margin-top: 25px;
+    	background: #f1f1f1;
+	}
+
+	button#terminal2 {left: 127px;}
+	button#terminal3 {left: 242px;}
 }
 
 @media screen and (max-width: 767px) {
@@ -52,6 +67,9 @@ button.tab-container__body__content__header:focus {outline:0;}
 	.tab-container__body__content.isActive {
 		border: 4px solid #07a7a7;
 		background: #fff;
+	}
+	.tab-container__body__content__details {
+	    padding: 0 10px 10px;
 	}
 }
 
